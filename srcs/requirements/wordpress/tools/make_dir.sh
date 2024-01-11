@@ -1,23 +1,18 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    .env                                               :+:      :+:    :+:    #
+#    make_dir.sh                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: tpetros <tpetros@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/03 16:23:13 by tpetros           #+#    #+#              #
-#    Updated: 2024/01/03 16:23:14 by tpetros          ###   ########.fr        #
+#    Created: 2024/01/05 17:11:34 by tpetros           #+#    #+#              #
+#    Updated: 2024/01/05 18:15:16 by tpetros          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-DOMAIN_NAME=tpetros.42.fr
-CERT_=./requirements/tools/tpetros.42.fr.crt
-KEY_=./requirements/tools/tpetros.42.fr.key
-DB_NAME=wordpress
-DB_ROOT=rootpass
-DB_USER=wpuser
-DB_PASS=wppa$$word
-WPADUSER=dsium
-WPADPASS=Dsium@125756
-WPUSER1=wpuser1
-WPUSER1PASS=wpuser1pass
+#!/bin/bash
+if [ ! -d "/root/data" ]; then
+        mkdir /root/data
+        mkdir /root/data/mariadb
+        mkdir /root/data/wordpress
+fi
