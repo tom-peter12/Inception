@@ -76,6 +76,8 @@ fclean:
 	-@sudo rm -rf /home/tomas/data
 	-@docker stop $$(docker ps -qa)
 	-@docker system prune --all --force --volumes
+	-@docker volume rm srcs_wp_data
+	-@docker volume rm srcs_db_data
 	-@docker network prune --force
 	-@docker volume prune --force
 

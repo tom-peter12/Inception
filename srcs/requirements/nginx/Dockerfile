@@ -8,7 +8,11 @@ RUN mkdir /etc/nginx/ssl && \
     -out /etc/nginx/ssl/tpetros.crt  \
     -subj "/C=AE/L=Abu Dhabi/O=42/OU=42AbuDhabi MED/CN=tpetros.42.fr"
 
-COPY ./conf/nginx.conf /etc/nginx/nginx.conf
+COPY ./conf/nginx.conf /etc/nginx/http.d/nginx.conf
+
+RUN chmod 644 /etc/nginx/http.d/nginx.conf
+
+RUN chown -R nginx:nginx /etc/nginx/http.d
 
 EXPOSE 443
 
