@@ -60,9 +60,9 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /home/tomas/data/db
+      device: /home/tpetros/data/db
   wp_data:
     driver_opts:
       o: bind
       type: none
-      device: /home/tomas/data/wp
+      device: /home/tpetros/data/wp

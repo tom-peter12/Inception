@@ -1,9 +1,6 @@
 #!/bin/bash
-if [ ! -d "/home/${USER}/data" ] && [ ! -d "/Users/${USER}/data" ]
+if [ ! -d "/home/tpetros/data" ]
 then
-        mkdir -p /home/${USER}/data/db
-        mkdir -p /home/${USER}/data/wp
-        mkdir -p /home/${USER}/data/portainer
-        mkdir -p /home/${USER}/data/portfolio
-        mkdir -p /home/${USER}/data/adminer
+        mkdir -p /home/tpetros/data/db
+        mkdir -p /home/tpetros/data/wp
 fi

@@ -13,11 +13,11 @@
 name = inception
 
 all:
-	@bash srcs/requirements/wordpress/tools/make_dir.sh
+	@bash srcs/requirements/tools/init_db.sh
 	@docker compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d
 
 build:
-	@bash srcs/requirements/wordpress/tools/make_dir.sh
+	@bash srcs/requirements/tools/init_db.sh
 	@docker compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d --build
 
 down:
@@ -28,13 +28,14 @@ re: down
 
 clean: down
 	@docker system prune -a
-	-@sudo rm -rf /root/data
+	-@sudo rm -rf ~/data
 
 fclean:
 	-docker stop $$(docker ps -qa)
 	-docker system prune --all --force --volumes
 	-docker network prune --force
 	-docker volume prune --force
-	-@sudo rm -rf /root/data
+	-docker builder prune
+	-@sudo rm -rf ~/data
 
 .PHONY	: all build down re clean fclean
