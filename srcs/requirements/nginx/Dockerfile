@@ -1,31 +1,15 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Dockerfile                                         :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: tpetros <tpetros@student.42abudhabi.ae>    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/03 16:23:13 by tpetros           #+#    #+#              #
-#    Updated: 2024/01/05 17:22:14 by tpetros          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 FROM alpine:3.18
 
-RUN apk update && apk upgrade && apk add nginx openssl wget
+RUN apk update && apk upgrade && apk add --no-cache nginx openssl
 
-RUN rm -rf /var/cache/apk/*
+RUN mkdir /etc/nginx/ssl && \
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -keyout /etc/nginx/ssl/tpetros.key \
+    -out /etc/nginx/ssl/tpetros.crt  \
+    -subj "/C=AE/L=Abu Dhabi/O=42/OU=42AbuDhabi MED/CN=tpetros.42.fr"
 
-RUN mkdir -p /var/run/nginx /etc/nginx/ssl /var/www/html
-
-RUN openssl req -x509 -newkey rsa:4096 -keyout /etc/nginx/ssl/tpetros.42.ae.key \
-    -out /etc/nginx/ssl/tpetros.42.ae.crt -days 365 -nodes \
-    -subj "/C=AE/ST=ABUDHABI/L=MINA/O=42ABUDHABI/CN=tpetros.42.ae"
-
-COPY requirements/nginx/conf/nginx.conf /etc/nginx/nginx.conf
-
-RUN chmod 755 /var/www/html
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 443
 
-CMD [ "nginx", "-g", "daemon off;" ]
+CMD ["nginx", "-g", "daemon off;"]

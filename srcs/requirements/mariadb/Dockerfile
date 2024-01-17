@@ -1,41 +1,17 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Dockerfile                                         :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: tpetros <tpetros@student.42abudhabi.ae>    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/03 16:24:09 by tpetros           #+#    #+#              #
-#    Updated: 2024/01/05 17:13:03 by tpetros          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 FROM alpine:3.18
 
+RUN apk update && apk upgrade && apk add --no-cache mariadb mariadb-client
 
-ARG DB_NAME \
-    DB_USER \
-    DB_PASS
+RUN mkdir -p /run/mysqld && chmod 777 /run/mysqld
 
-RUN apk update && apk add mariadb mariadb-client
+RUN sed -i "s|skip-networking|#skip-networking|g" /etc/my.cnf.d/mariadb-server.cnf
 
-RUN rm -rf /var/cache/apk/*
-
-RUN mkdir /var/run/mysqld; \
-    chmod 777 /var/run/mysqld; \
-    { echo '[mysqld]'; \
-      echo 'skip-host-cache'; \
-      echo 'skip-name-resolve'; \
-      echo 'bind-address=0.0.0.0'; \
-    } | tee  /etc/my.cnf.d/docker.cnf; \
-    sed -i "s|skip-networking|skip-networking=0|g" \
-      /etc/my.cnf.d/mariadb-server.cnf
-
-RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
+RUN mariadb-install-db --user=mysql --datadir=/var/lib/mysql --skip-test-db
 
 EXPOSE 3306
 
-COPY requirements/mariadb/conf/create_db.sh .
-RUN sh create_db.sh && rm create_db.sh
-USER mysql
-CMD ["/usr/bin/mysqld", "--skip-log-error"]
+COPY ./conf/config.sh /config.sh
+
+ENTRYPOINT ["sh", "config.sh"]
+
+CMD ["mariadbd", "--user=mysql", "--bind-address=0.0.0.0"]

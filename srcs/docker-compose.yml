@@ -1,83 +1,68 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    docker-compose.yml                                 :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: tpetros <tpetros@student.42abudhabi.ae>    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/03 16:23:13 by tpetros           #+#    #+#              #
-#    Updated: 2024/01/03 16:23:14 by tpetros          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-version: '3'
+version: "3.8"
 
 services:
   nginx:
-    build:
-      context: .
-      dockerfile: requirements/nginx/Dockerfile
+    build: ./requirements/nginx
     container_name: nginx
-    depends_on:
-      - wordpress
+    volumes:
+      - wp_data:/var/www/html/wordpress
     ports:
       - "443:443"
-    networks:
-      - inception
-    # volumes:
-    #   - ./requirements/nginx/conf/:/etc/nginx/http.d/
-    #   - ./requirements/nginx/tools:/etc/nginx/ssl/
-    #   - wp-volume:/var/www/
     restart: always
-
+    depends_on:
+      - wordpress
+    networks:
+      - InceptionNetwork
   mariadb:
-    build:
-      context: .
-      dockerfile: requirements/mariadb/Dockerfile
-      args:
-        DB_NAME: ${DB_NAME}
-        DB_USER: ${DB_USER}
-        DB_PASS: ${DB_PASS}
-        DB_ROOT: ${DB_ROOT}
+    build: ./requirements/mariadb
     container_name: mariadb
+    environment:
+      WP_DB_NAME : ${WP_DB_NAME}
+      DB_USER : ${DB_USER}
+      DB_PASSWD : ${DB_PASSWD}
+      DB_ROOT_PASSWD : ${DB_ROOT_PASSWD}
     ports:
-      - "3306:3306"
-    networks:
-      - inception
-    # volumes:
-    #   - db-volume:/var/lib/mysql
+      - "6969:3306"
+    volumes:
+      - db_data:/var/lib/mysql
     restart: always
-
+    networks:
+      - InceptionNetwork
   wordpress:
-    build:
-      context: .
-      dockerfile: requirements/wordpress/Dockerfile
-      args:
-        DB_NAME: ${DB_NAME}
-        DB_USER: ${DB_USER}
-        DB_PASS: ${DB_PASS}
+    build: ./requirements/wordpress
     container_name: wordpress
+    environment:
+      WP_HOST: mariadb:3306
+      WP_TITLE: ${WP_TITLE}
+      WP_URL: ${WP_URL}
+      WP_ADMIN: ${WP_ADMIN}
+      WP_ADMIN_PASSWD: ${WP_ADMIN_PASSWD}
+      WP_ADMIN_EMAIL: ${WP_ADMIN_EMAIL}
+      WP_DB_NAME: ${WP_DB_NAME}
+      WP_USER: ${WP_USER}
+      WP_PASSWD: ${WP_PASSWD}
     depends_on:
       - mariadb
+    ports:
+      - "9000:9000"
+    volumes:
+      - wp_data:/var/www/html/wordpress
     restart: always
     networks:
-      - inception
-#     volumes:
-#       - wp-volume:/var/www/
-
-# volumes:
-#   wp-volume:
-#     driver_opts:
-#       o: bind
-#       type: none
-#       device: /root/data/wordpress
-
-#   db-volume:
-#     driver_opts:
-#       o: bind
-#       type: none
-#       device: /root/data/mariadb
+      - InceptionNetwork
 
 networks:
-    inception:
-        driver: bridge
+  InceptionNetwork:
+    driver: bridge
+
+volumes:
+  db_data:
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/tomas/data/db
+  wp_data:
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/tomas/data/wp
