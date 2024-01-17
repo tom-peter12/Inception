@@ -14,6 +14,7 @@ RUN chmod 644 /etc/nginx/http.d/nginx.conf
 
 RUN chown -R nginx:nginx /etc/nginx/http.d
 
+
 EXPOSE 443
 
 CMD ["nginx", "-g", "daemon off;"]

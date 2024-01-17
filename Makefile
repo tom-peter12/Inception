@@ -6,7 +6,7 @@
 #    By: tpetros <tpetros@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 16:25:24 by tpetros           #+#    #+#              #
-#    Updated: 2024/01/05 18:11:03 by tpetros          ###   ########.fr        #
+#    Updated: 2024/01/18 02:13:44 by tpetros          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,11 +69,11 @@ re: fclean build
 clean: down
 	@printf "Cleaning configuration ${name}...\n"
 	@docker system prune -a
-	-@sudo rm -rf /home/tomas/data
+	-@sudo rm -rf /home/${USER}/data
 
 fclean:
 	@printf "Total clean of all configurations docker\n"
-	-@sudo rm -rf /home/tomas/data
+	-@sudo rm -rf /home/${USER}/data
 	-@docker stop $$(docker ps -qa)
 	-@docker system prune --all --force --volumes
 	-@docker volume rm srcs_wp_data
