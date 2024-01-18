@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    setup_wp.sh                                        :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: tpetros <tpetros@student.42abudhabi.ae>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/01/18 15:25:15 by tpetros           #+#    #+#              #
+#    Updated: 2024/01/18 15:25:16 by tpetros          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 #!/bin/bash
 if [ -f "/var/www/html/wordpress/wp-config.php" ]; then
     echo "WordPress is already installed in this directory."

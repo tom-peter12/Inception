@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Dockerfile                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: tpetros <tpetros@student.42abudhabi.ae>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/01/18 15:26:00 by tpetros           #+#    #+#              #
+#    Updated: 2024/01/18 15:26:01 by tpetros          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 FROM alpine:3.18
 
 RUN apk update && apk upgrade && apk add --no-cache mariadb mariadb-client
