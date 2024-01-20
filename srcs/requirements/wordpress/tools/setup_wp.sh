@@ -6,7 +6,7 @@
 #    By: tpetros <tpetros@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/18 15:25:15 by tpetros           #+#    #+#              #
-#    Updated: 2024/01/18 15:25:16 by tpetros          ###   ########.fr        #
+#    Updated: 2024/01/21 00:56:01 by tpetros          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,6 @@ wp core install --allow-root --url=${WP_URL} --title=${WP_TITLE} --admin_user=${
 echo "Creating users..."
 wp user create ${WP_ADMIN} ${WP_ADMIN_EMAIL} --role=administrator --user_pass=${WP_ADMIN_PASSWD} --path=/var/www/html/wordpress --allow-root
 
-wp user create ${WP_USER} yusufisawii@gmail.com --role=editor --user_pass=${WP_PASSWD} --path=/var/www/html/wordpress --allow-root 
+wp user create ${WP_USER} tomaspetros@gmail.com --role=editor --user_pass=${WP_PASSWD} --path=/var/www/html/wordpress --allow-root 
 
 exec "$@"
