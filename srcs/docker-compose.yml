@@ -63,6 +63,13 @@ services:
     networks:
       - InceptionNetwork
 
+  website:
+    build: ./requirements/bonus/website
+    container_name: website
+    restart: always
+    ports:
+      - 80:80
+
 networks:
   InceptionNetwork:
     driver: bridge
