@@ -14,6 +14,7 @@ version: "3.9"
 
 services:
   nginx:
+    image: nginx
     build: ./requirements/nginx
     container_name: nginx
     volumes:
@@ -27,6 +28,7 @@ services:
       - InceptionNetwork
 
   mariadb:
+    image: mariadb
     build: ./requirements/mariadb
     container_name: mariadb
     environment:
@@ -41,6 +43,7 @@ services:
       - InceptionNetwork
 
   wordpress:
+    image: wordpress
     build: ./requirements/wordpress
     container_name: wordpress
     environment:
@@ -64,11 +67,24 @@ services:
       - InceptionNetwork
 
   website:
+    image: website
     build: ./requirements/bonus/website
     container_name: website
     restart: always
     ports:
       - 80:80
+  
+  portainer:
+      image: portainer
+      container_name: portainer
+      build: ./requirements/bonus/portainer
+      networks:
+        - InceptionNetwork
+      ports:
+        - "9443:9443"
+      volumes:
+        - "/var/run/docker.sock:/var/run/docker.sock"
+      restart: always
 
 networks:
   InceptionNetwork:
