@@ -58,8 +58,8 @@ services:
       WP_PASSWD: ${WP_PASSWD}
     depends_on:
       - mariadb
-    # ports:
-    #   - "9000:9000"
+    ports:
+      - "9000:9000"
     volumes:
       - wp_data:/var/www/html/wordpress
     restart: always
@@ -85,6 +85,16 @@ services:
       volumes:
         - "/var/run/docker.sock:/var/run/docker.sock"
       restart: always
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    build: ./requirements/bonus/adminer
+    networks:
+      - InceptionNetwork
+    ports:
+      - 8080:8080
+    restart: always
 
 networks:
   InceptionNetwork:
