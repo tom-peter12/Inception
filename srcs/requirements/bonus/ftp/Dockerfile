@@ -1,29 +1,24 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    .env                                               :+:      :+:    :+:    #
+#    Dockerfile                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: tpetros <tpetros@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/03 16:25:24 by tpetros           #+#    #+#              #
-#    Updated: 2024/01/18 15:24:05 by tpetros          ###   ########.fr        #
+#    Created: 2024/01/25 00:00:45 by tpetros           #+#    #+#              #
+#    Updated: 2024/01/25 00:23:16 by tpetros          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-WP_TITLE=Inception
-WP_URL=https://tpetros.42.fr
-WP_ADMIN=tpetros_admin
-WP_ADMIN_PASSWD=0011supeR
-WP_ADMIN_EMAIL=tpetros@student.42abudhabi.ae
+FROM alpine:3.18
 
-WP_DB_NAME=wordpress
-WP_USER=tpetros
-WP_USER_EMAIL=tomaspetros@gmail.com
-WP_PASSWD=0011
+RUN	apk update && apk upgrade && apk add --no-cache \
+        vsftpd
 
-DB_USER=tpetros
-DB_PASSWD=0011
-DB_ROOT_PASSWD=000111
+COPY conf/vsftpd.conf /tmp/vsftpd.conf
 
-FTP_USR=tpetros
-FTP_PWD=new1234
+COPY tools/ftp.sh /tmp/ftp.sh
+
+ENTRYPOINT ["sh", "/tmp/ftp.sh"]
+
+
