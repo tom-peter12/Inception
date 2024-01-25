@@ -25,3 +25,6 @@ RUN echo "ServerName localhost" >> /etc/apache2/httpd.conf
 EXPOSE 80
 
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+
+LABEL maintainer="Tomas Petros - Binarymister.com" \
+      version="1.0.0"

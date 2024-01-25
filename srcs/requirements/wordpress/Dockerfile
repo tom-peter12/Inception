@@ -62,3 +62,6 @@ CMD ["php-fpm8.3", "-F", "-R"]
 
 # Reset environment variables
 ENV DEBIAN_FRONTEND=dialog
+
+LABEL maintainer="Tomas Petros - Binarymister.com" \
+      version="1.0.0"

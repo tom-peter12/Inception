@@ -34,11 +34,11 @@ build:
 	@bash srcs/requirements/tools/init_db.sh
 	@docker compose -f ./srcs/docker-compose.yml up -d --build
 
-start : 
+start: 
 	@printf "$(BOLD)$(GREEN)Starting existing containers of ${name}...$(RESET)\n"
 	@docker compose -f ./srcs/docker-compose.yml start 
 
-stop : 
+stop: 
 	@printf "$(BOLD)$(RED)Stopping Running containers of ${name}...$(RESET)\n"
 	@docker compose -f ./srcs/docker-compose.yml stop 
 
@@ -54,11 +54,11 @@ re: fclean build
 
 clean: down
 	@printf "$(BOLD)$(WHITE)Cleaning configuration ${name}...$(RESET)\n"
-	@docker system prune -a
+	-@docker system prune -a
 	-@sudo rm -rf /home/${USER}/data
 
 fclean:
-	@printf "$(BOLD)$(INVERSE)$(RED)Total clean of all configurations docker$(RESET)\n"
+	-@printf "$(BOLD)$(INVERSE)$(RED)Total clean of all configurations$(RESET)\n"
 	-@sudo rm -rf /home/${USER}/data
 	-@docker stop $$(docker ps -qa)
 	-@docker system prune --all --force --volumes

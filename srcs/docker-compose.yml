@@ -20,7 +20,7 @@ services:
     volumes:
       - wp_data:/var/www/html/wordpress
     ports:
-      - "443:443"
+      - 443:443
     restart: always
     depends_on:
       - wordpress

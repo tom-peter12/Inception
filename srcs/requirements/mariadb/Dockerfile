@@ -27,3 +27,6 @@ COPY ./conf/config.sh /config.sh
 ENTRYPOINT ["sh", "config.sh"]
 
 CMD ["mariadbd", "--user=mysql", "--bind-address=0.0.0.0"]
+
+LABEL maintainer="Tomas Petros - Binarymister.com" \
+      version="1.0.0"

@@ -22,3 +22,6 @@ RUN curl -L https://github.com/portainer/portainer/releases/download/2.19.4/port
 EXPOSE 9443
 
 CMD ["portainer"]
+
+LABEL maintainer="Tomas Petros - Binarymister.com" \
+      version="1.0.0"

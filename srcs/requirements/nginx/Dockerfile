@@ -12,7 +12,7 @@
 
 FROM alpine:3.18
 
-RUN apk update && apk upgrade && apk add --no-cache nginx openssl
+RUN apk update && apk add --no-cache nginx openssl
 
 RUN mkdir /etc/nginx/ssl && \
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
@@ -30,3 +30,6 @@ RUN chown -R nginx:nginx /etc/nginx/http.d
 EXPOSE 443
 
 CMD ["nginx", "-g", "daemon off;"]
+
+LABEL maintainer="Tomas Petros - Binarymister.com" \
+      version="1.0.0"

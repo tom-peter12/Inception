@@ -12,7 +12,7 @@
 
 FROM alpine:3.18
 
-RUN	apk update && apk upgrade && apk add --no-cache \
+RUN	apk update && apk add --no-cache \
         vsftpd
 
 COPY conf/vsftpd.conf /tmp/vsftpd.conf
@@ -22,3 +22,5 @@ COPY tools/ftp.sh /tmp/ftp.sh
 ENTRYPOINT ["sh", "/tmp/ftp.sh"]
 
 
+LABEL maintainer="Tomas Petros - Binarymister.com" \
+      version="1.0.0"
