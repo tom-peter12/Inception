@@ -58,6 +58,7 @@ services:
       WP_PASSWD: ${WP_PASSWD}
     depends_on:
       - mariadb
+      - redis
     ports:
       - "9000:9000"
     volumes:
@@ -111,6 +112,16 @@ services:
     environment:
       FTP_USR: ${FTP_USR}
       FTP_PWD: ${FTP_PWD}
+
+  redis:
+    image: redis
+    container_name: redis
+    build: ./requirements/bonus/redis
+    ports:
+      - 6379:6379
+    restart: always
+    expose:
+      - 6379
 
 networks:
   InceptionNetwork:

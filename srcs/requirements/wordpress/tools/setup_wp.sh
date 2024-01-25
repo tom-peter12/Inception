@@ -53,4 +53,13 @@ wp user create ${WP_ADMIN} ${WP_ADMIN_EMAIL} --role=administrator --user_pass=${
 
 wp user create ${WP_USER} ${WP_USER_EMAIL} --role=editor --user_pass=${WP_PASSWD} --path=/var/www/html/wordpress --allow-root 
 
+sed -i '/\/\* That'\''s all, stop editing! Happy publishing. \*\//i \
+define( '\''WP_REDIS_HOST'\'', '\''redis'\'' );\n\
+define( '\''WP_REDIS_PORT'\'', 6379 );\n\
+define( '\''WP_REDIS_TIMEOUT'\'', 1 );\n\
+define( '\''WP_REDIS_READ_TIMEOUT'\'', 1 );\n\
+define( '\''WP_REDIS_DATABASE'\'', 0 );\n' wp-config.php
+
+
+
 exec "$@"
