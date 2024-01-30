@@ -6,7 +6,7 @@
 #    By: tpetros <tpetros@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/18 15:26:00 by tpetros           #+#    #+#              #
-#    Updated: 2024/01/18 15:26:01 by tpetros          ###   ########.fr        #
+#    Updated: 2024/01/30 19:27:47 by tpetros          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,5 +28,5 @@ ENTRYPOINT ["sh", "config.sh"]
 
 CMD ["mariadbd", "--user=mysql", "--bind-address=0.0.0.0"]
 
-LABEL maintainer="Tomas Petros - Binarymister.com" \
+LABEL maintainer="Tomas Petros - Binaryminstrel.com" \
       version="1.0.0"

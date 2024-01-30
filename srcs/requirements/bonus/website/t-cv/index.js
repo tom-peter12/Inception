@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   index.js                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tpetros <tpetros@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/30 19:29:43 by tpetros           #+#    #+#             */
+/*   Updated: 2024/01/30 19:29:44 by tpetros          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 const btnPrint = document.getElementById("print-btn");
 const wrapBox = document.getElementById("type-js");
 const typingText = document.querySelector(".text-js");

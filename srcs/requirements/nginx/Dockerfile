@@ -6,7 +6,7 @@
 #    By: tpetros <tpetros@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/18 15:25:26 by tpetros           #+#    #+#              #
-#    Updated: 2024/01/18 15:25:27 by tpetros          ###   ########.fr        #
+#    Updated: 2024/01/30 19:27:09 by tpetros          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,5 +31,5 @@ EXPOSE 443
 
 CMD ["nginx", "-g", "daemon off;"]
 
-LABEL maintainer="Tomas Petros - Binarymister.com" \
+LABEL maintainer="Tomas Petros - Binaryminstrel.com" \
       version="1.0.0"

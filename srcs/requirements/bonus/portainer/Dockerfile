@@ -6,7 +6,7 @@
 #    By: tpetros <tpetros@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/24 00:14:05 by tpetros           #+#    #+#              #
-#    Updated: 2024/01/24 01:38:19 by tpetros          ###   ########.fr        #
+#    Updated: 2024/01/30 19:29:19 by tpetros          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,5 +23,5 @@ EXPOSE 9443
 
 CMD ["portainer"]
 
-LABEL maintainer="Tomas Petros - Binarymister.com" \
+LABEL maintainer="Tomas Petros - Binaryminstrel.com" \
       version="1.0.0"

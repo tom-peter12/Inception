@@ -6,7 +6,7 @@
 #    By: tpetros <tpetros@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 16:25:24 by tpetros           #+#    #+#              #
-#    Updated: 2024/01/18 15:24:05 by tpetros          ###   ########.fr        #
+#    Updated: 2024/01/30 19:29:19 by tpetros          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,5 +26,5 @@ EXPOSE 80
 
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 
-LABEL maintainer="Tomas Petros - Binarymister.com" \
+LABEL maintainer="Tomas Petros - Binaryminstrel.com" \
       version="1.0.0"

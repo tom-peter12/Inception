@@ -6,7 +6,7 @@
 #    By: tpetros <tpetros@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/25 00:00:45 by tpetros           #+#    #+#              #
-#    Updated: 2024/01/25 00:23:16 by tpetros          ###   ########.fr        #
+#    Updated: 2024/01/30 19:28:15 by tpetros          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,5 +22,5 @@ COPY tools/ftp.sh /tmp/ftp.sh
 ENTRYPOINT ["sh", "/tmp/ftp.sh"]
 
 
-LABEL maintainer="Tomas Petros - Binarymister.com" \
+LABEL maintainer="Tomas Petros - Binaryminstrel.com" \
       version="1.0.0"
