@@ -16,10 +16,9 @@ RUN apt-get update && apt-get install -y \
     wget \
     gnupg \
     ca-certificates \
-    lsb-release \
     && rm -rf /var/lib/apt/lists/*
 
-RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | \
+RUN echo "deb https://packages.sury.org/php/ bullseye main" | \
     tee /etc/apt/sources.list.d/sury-php.list && \
     wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add -
 
@@ -31,7 +30,6 @@ RUN apt-get update && apt-get install -y \
     php-json \
     php8.3-curl \
     curl \
-    mariadb-client \
     sendmail \
     && rm -rf /var/lib/apt/lists/*
 
