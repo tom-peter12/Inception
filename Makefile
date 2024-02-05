@@ -50,7 +50,6 @@ re: fclean build
 clean: down
 	@printf "$(BOLD)$(WHITE)Cleaning configuration ${name}...$(RESET)\n"
 	-@docker system prune -a
-	-@sudo rm -rf /home/${USER}/data
 
 fclean:
 	-@printf "$(BOLD)$(INVERSE)$(RED)Total clean of all configurations$(RESET)\n"
